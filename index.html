@@ -1,0 +1,720 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+  <meta charset="UTF-8" />\
+  <title>Urban Heat Stress & Resource Strain Decision Platform</title>\
+  <meta name="viewport" content="width=device-width, initial-scale=1" />\
+  <style>\
+    :root \{\
+      --bg: #050816;\
+      --card: #0f172a;\
+      --accent: #38bdf8;\
+      --accent-soft: rgba(56,189,248,0.15);\
+      --danger: #f97373;\
+      --severe: #fb923c;\
+      --ok: #22c55e;\
+      --text-main: #e5e7eb;\
+      --text-muted: #9ca3af;\
+    \}\
+\
+    * \{ box-sizing: border-box; \}\
+\
+    body \{\
+      margin: 0;\
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;\
+      background: radial-gradient(circle at top, #0b1120 0, #020617 50%, #000 100%);\
+      color: var(--text-main);\
+    \}\
+\
+    header \{\
+      padding: 1.5rem 1.5rem 0.5rem;\
+      border-bottom: 1px solid rgba(148,163,184,0.25);\
+      backdrop-filter: blur(12px);\
+      position: sticky;\
+      top: 0;\
+      z-index: 10;\
+      background: linear-gradient(to bottom, rgba(15,23,42,0.95), rgba(15,23,42,0.7), transparent);\
+    \}\
+\
+    header h1 \{\
+      font-size: 1.4rem;\
+      margin: 0 0 0.25rem;\
+      color: #f9fafb;\
+    \}\
+\
+    header p \{\
+      margin: 0;\
+      font-size: 0.85rem;\
+      color: var(--text-muted);\
+      max-width: 720px;\
+    \}\
+\
+    .pill \{\
+      display: inline-flex;\
+      align-items: center;\
+      gap: 0.3rem;\
+      padding: 0.2rem 0.55rem;\
+      border-radius: 999px;\
+      font-size: 0.7rem;\
+      border: 1px solid rgba(148,163,184,0.6);\
+      color: var(--text-muted);\
+      margin-bottom: 0.5rem;\
+      background: rgba(15,23,42,0.9);\
+    \}\
+\
+    .pill span \{\
+      width: 6px;\
+      height: 6px;\
+      border-radius: 999px;\
+      background: var(--accent);\
+    \}\
+\
+    main \{\
+      display: grid;\
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);\
+      gap: 1.5rem;\
+      padding: 1.5rem;\
+      max-width: 1200px;\
+      margin: 0 auto 2rem;\
+    \}\
+\
+    @media (max-width: 900px) \{\
+      main \{\
+        grid-template-columns: minmax(0, 1fr);\
+      \}\
+      header \{\
+        position: static;\
+      \}\
+    \}\
+\
+    .card \{\
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.08), transparent 55%),\
+                  radial-gradient(circle at bottom right, rgba(59,130,246,0.08), transparent 60%),\
+                  #020617;\
+      border-radius: 1rem;\
+      border: 1px solid rgba(148,163,184,0.35);\
+      padding: 1rem 1.25rem 1.25rem;\
+      box-shadow: 0 18px 40px rgba(15,23,42,0.9);\
+    \}\
+\
+    .card h2 \{\
+      font-size: 1rem;\
+      margin: 0 0 0.5rem;\
+      display: flex;\
+      justify-content: space-between;\
+      align-items: center;\
+      color: #f9fafb;\
+    \}\
+\
+    .card h2 span.tag \{\
+      font-size: 0.7rem;\
+      padding: 0.1rem 0.55rem;\
+      border-radius: 999px;\
+      border: 1px solid rgba(148,163,184,0.5);\
+      color: var(--text-muted);\
+    \}\
+\
+    .card > p \{\
+      margin: 0 0 0.75rem;\
+      font-size: 0.8rem;\
+      color: var(--text-muted);\
+    \}\
+\
+    form \{\
+      display: grid;\
+      gap: 0.75rem;\
+    \}\
+\
+    label \{\
+      display: block;\
+      font-size: 0.75rem;\
+      color: var(--text-muted);\
+      margin-bottom: 0.15rem;\
+    \}\
+\
+    .field \{\
+      display: flex;\
+      flex-direction: column;\
+    \}\
+\
+    input[type="text"],\
+    input[type="number"],\
+    select \{\
+      background: rgba(15,23,42,0.9);\
+      border-radius: 0.6rem;\
+      border: 1px solid rgba(148,163,184,0.55);\
+      padding: 0.5rem 0.7rem;\
+      font-size: 0.8rem;\
+      color: var(--text-main);\
+      outline: none;\
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;\
+    \}\
+\
+    input:focus,\
+    select:focus \{\
+      border-color: var(--accent);\
+      box-shadow: 0 0 0 1px rgba(56,189,248,0.4);\
+      background: #020617;\
+    \}\
+\
+    .inline \{\
+      display: grid;\
+      grid-template-columns: repeat(2, minmax(0, 1fr));\
+      gap: 0.75rem;\
+    \}\
+\
+    .helper \{\
+      font-size: 0.7rem;\
+      color: var(--text-muted);\
+      margin-top: 0.1rem;\
+    \}\
+\
+    button \{\
+      margin-top: 0.5rem;\
+      border-radius: 999px;\
+      border: none;\
+      padding: 0.55rem 0.9rem;\
+      font-size: 0.82rem;\
+      font-weight: 500;\
+      cursor: pointer;\
+      display: inline-flex;\
+      align-items: center;\
+      gap: 0.35rem;\
+      background: linear-gradient(135deg, #0ea5e9, #22c55e);\
+      color: #0b1120;\
+      box-shadow: 0 12px 24px rgba(34,197,94,0.25);\
+    \}\
+\
+    button.secondary \{\
+      background: transparent;\
+      color: var(--accent);\
+      border: 1px solid rgba(148,163,184,0.6);\
+      box-shadow: none;\
+    \}\
+\
+    button span.icon \{\
+      font-size: 0.9rem;\
+    \}\
+\
+    /* Results */\
+\
+    .result-badges \{\
+      display: flex;\
+      flex-wrap: wrap;\
+      gap: 0.4rem;\
+      margin-bottom: 0.6rem;\
+    \}\
+\
+    .badge \{\
+      border-radius: 999px;\
+      padding: 0.15rem 0.6rem;\
+      font-size: 0.7rem;\
+      border: 1px solid rgba(148,163,184,0.6);\
+      display: inline-flex;\
+      align-items: center;\
+      gap: 0.3rem;\
+    \}\
+\
+    .dot \{\
+      width: 8px;\
+      height: 8px;\
+      border-radius: 999px;\
+      display: inline-block;\
+    \}\
+\
+    .dot.ok \{ background: var(--ok); \}\
+    .dot.severe \{ background: var(--severe); \}\
+    .dot.danger \{ background: var(--danger); \}\
+\
+    .score-row \{\
+      display: grid;\
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);\
+      gap: 0.75rem;\
+      align-items: start;\
+      margin-bottom: 0.5rem;\
+    \}\
+\
+    @media (max-width: 600px) \{\
+      .score-row \{\
+        grid-template-columns: minmax(0, 1fr);\
+      \}\
+    \}\
+\
+    .score-block \{\
+      background: rgba(15,23,42,0.95);\
+      border-radius: 0.7rem;\
+      padding: 0.6rem 0.7rem;\
+      border: 1px solid rgba(148,163,184,0.4);\
+    \}\
+\
+    .score-label \{\
+      font-size: 0.7rem;\
+      color: var(--text-muted);\
+      margin-bottom: 0.25rem;\
+      display: flex;\
+      justify-content: space-between;\
+      align-items: center;\
+    \}\
+\
+    .score-main \{\
+      font-size: 0.95rem;\
+      font-weight: 600;\
+    \}\
+\
+    .score-sub \{\
+      font-size: 0.7rem;\
+      color: var(--text-muted);\
+    \}\
+\
+    .bar \{\
+      margin-top: 0.4rem;\
+      height: 6px;\
+      border-radius: 999px;\
+      overflow: hidden;\
+      background: rgba(15,23,42,1);\
+      border: 1px solid rgba(148,163,184,0.4);\
+    \}\
+\
+    .bar-fill \{\
+      height: 100%;\
+      border-radius: inherit;\
+      background: linear-gradient(90deg, #22c55e, #facc15, #fb923c, #f97373);\
+      transform-origin: left;\
+      transform: scaleX(0.2);\
+      transition: transform 0.3s ease-out;\
+    \}\
+\
+    .section-title \{\
+      margin-top: 0.7rem;\
+      font-size: 0.8rem;\
+      font-weight: 600;\
+      text-transform: uppercase;\
+      letter-spacing: 0.08em;\
+      color: var(--text-muted);\
+    \}\
+\
+    ul \{\
+      margin: 0.25rem 0;\
+      padding-left: 1.1rem;\
+      font-size: 0.8rem;\
+      color: var(--text-main);\
+    \}\
+\
+    li \{\
+      margin-bottom: 0.15rem;\
+    \}\
+\
+    .pill-row \{\
+      display: flex;\
+      flex-wrap: wrap;\
+      gap: 0.25rem;\
+      margin: 0.25rem 0 0.5rem;\
+    \}\
+\
+    .mini-pill \{\
+      font-size: 0.7rem;\
+      padding: 0.15rem 0.45rem;\
+      border-radius: 999px;\
+      border: 1px solid rgba(148,163,184,0.5);\
+      color: var(--text-muted);\
+    \}\
+\
+    .note \{\
+      font-size: 0.7rem;\
+      color: var(--text-muted);\
+      margin-top: 0.4rem;\
+    \}\
+\
+    .chips-row \{\
+      display: flex;\
+      flex-wrap: wrap;\
+      gap: 0.35rem;\
+      margin-top: 0.3rem;\
+    \}\
+\
+    .chip \{\
+      font-size: 0.7rem;\
+      padding: 0.2rem 0.5rem;\
+      border-radius: 999px;\
+      border: 1px dashed rgba(148,163,184,0.6);\
+      color: var(--text-muted);\
+    \}\
+\
+    .sim-controls \{\
+      display: flex;\
+      flex-wrap: wrap;\
+      gap: 0.4rem;\
+      margin-top: 0.5rem;\
+    \}\
+\
+    .sim-controls button \{\
+      font-size: 0.75rem;\
+      padding: 0.3rem 0.6rem;\
+    \}\
+  </style>\
+</head>\
+<body>\
+  <header>\
+    <div class="pill"><span></span> Urban climate engineering, not an AQI clone</div>\
+    <h1>Urban Heat Stress & Resource Strain Decision Platform</h1>\
+    <p>\
+      This platform evaluates urban heat stress and associated resource strain to support climate-resilient city planning and public safety decisions.\
+    </p>\
+  </header>\
+\
+  <main>\
+    <!-- LEFT: INPUTS -->\
+    <section class="card">\
+      <h2>\
+        City snapshot\
+        <span class="tag">Inputs only you can know</span>\
+      </h2>\
+      <p>Describe today\'92s conditions. All inputs are realistic, measurable, and different from pollution scores.</p>\
+\
+      <form id="heat-form">\
+        <div class="field">\
+          <label for="location">Location</label>\
+          <input id="location" type="text" placeholder="e.g., Nagpur CBD, Ward 21" />\
+        </div>\
+\
+        <div class="inline">\
+          <div class="field">\
+            <label for="temperature">Air temperature (\'b0C)</label>\
+            <input id="temperature" type="number" step="0.1" placeholder="e.g., 39" required />\
+            <div class="helper">Use typical afternoon maximum.</div>\
+          </div>\
+          <div class="field">\
+            <label for="humidity">Relative humidity (%)</label>\
+            <input id="humidity" type="number" step="1" placeholder="e.g., 55" required />\
+            <div class="helper">Higher humidity = higher stress.[web:6]</div>\
+          </div>\
+        </div>\
+\
+        <div class="inline">\
+          <div class="field">\
+            <label for="builtup">Built-up area (%)</label>\
+            <input id="builtup" type="number" step="1" placeholder="0\'96100" required />\
+            <div class="helper">Higher values mean more concrete, less ventilation.[web:11]</div>\
+          </div>\
+          <div class="field">\
+            <label for="greencover">Green cover (%)</label>\
+            <input id="greencover" type="number" step="1" placeholder="0\'96100" required />\
+            <div class="helper">Trees and parks reduce local heat.[web:11]</div>\
+          </div>\
+        </div>\
+\
+        <div class="inline">\
+          <div class="field">\
+            <label for="water">Water availability</label>\
+            <select id="water" required>\
+              <option value="low">Low</option>\
+              <option value="medium" selected>Medium</option>\
+              <option value="high">High</option>\
+            </select>\
+            <div class="helper">Utility\'92s ability to meet current demand.[web:18]</div>\
+          </div>\
+          <div class="field">\
+            <label for="power">Power demand level</label>\
+            <select id="power" required>\
+              <option value="normal">Normal</option>\
+              <option value="high" selected>High</option>\
+              <option value="critical">Critical / near peak</option>\
+            </select>\
+            <div class="helper">Relative to typical summer weekday.[web:13]</div>\
+          </div>\
+        </div>\
+\
+        <button type="submit">\
+          <span class="icon">\uc0\u9881 \u65039 </span>\
+          Run heat & resource assessment\
+        </button>\
+        <button type="button" class="secondary" id="simulate-btn">\
+          <span class="icon">\uc0\u55358 \u56810 </span>\
+          Simulate +10% green cover\
+        </button>\
+      </form>\
+    </section>\
+\
+    <!-- RIGHT: OUTPUTS -->\
+    <section class="card">\
+      <h2>\
+        Decision dashboard\
+        <span class="tag">From \'93it\'92s hot\'94 to \'93here\'92s what to do\'94</span>\
+      </h2>\
+      <p>Instant classification of heat stress, resource strain, and specific interventions you can deploy before systems fail.</p>\
+\
+      <div id="summary">\
+        <div class="result-badges">\
+          <div class="badge"><span class="dot ok"></span><span id="location-label">No location set yet</span></div>\
+          <div class="badge"><span class="dot ok"></span><span id="qualifier-label">Awaiting inputs</span></div>\
+        </div>\
+      </div>\
+\
+      <div class="score-row">\
+        <div class="score-block">\
+          <div class="score-label">\
+            <span>Heat Stress Index</span>\
+            <span id="heat-category-label">\'97</span>\
+          </div>\
+          <div class="score-main" id="heat-score">0 / 100</div>\
+          <div class="score-sub" id="heat-desc">Comfortable conditions. No actions recommended yet.</div>\
+          <div class="bar"><div class="bar-fill" id="heat-bar"></div></div>\
+        </div>\
+\
+        <div class="score-block">\
+          <div class="score-label">\
+            <span>Resource Strain Indicator</span>\
+            <span id="strain-category-label">\'97</span>\
+          </div>\
+          <div class="score-main" id="strain-score">0 / 100</div>\
+          <div class="score-sub" id="strain-desc">Power and water systems appear stable.</div>\
+          <div class="bar"><div class="bar-fill" id="strain-bar"></div></div>\
+        </div>\
+      </div>\
+\
+      <div class="section-title">Targeted recommendations</div>\
+      <div class="pill-row">\
+        <div class="mini-pill">No masks.</div>\
+        <div class="mini-pill">No \'93don\'92t go outside\'94.</div>\
+        <div class="mini-pill">Focus on design and operations.</div>\
+      </div>\
+      <ul id="recommendations">\
+        <li>Run an assessment to see area-specific cooling and resource measures.</li>\
+      </ul>\
+\
+      <div class="section-title">Planning extensions</div>\
+      <div class="chips-row">\
+        <div class="chip">Heat maps by ward (green cover vs. stress).[web:4]</div>\
+        <div class="chip">Monthly heat-risk trends for summer season.[web:5]</div>\
+        <div class="chip">Scenario builder: cool roofs vs. tree planting.[web:4]</div>\
+        <div class="chip">City-to-city comparison of resilience scores.[web:13]</div>\
+      </div>\
+      <div class="note">\
+        This is a preventive planning tool: it helps reshape streets, schedules, and infrastructure before the next heatwave hits, instead of just reporting discomfort.[web:5]\
+      </div>\
+    </section>\
+  </main>\
+\
+  <script>\
+    const form = document.getElementById("heat-form");\
+    const simulateBtn = document.getElementById("simulate-btn");\
+\
+    function computeScores(inputs) \{\
+      const \{ T, RH, built, green, water, power \} = inputs;\
+\
+      // --- HEAT STRESS INDEX (0\'96100) ---\
+      // Base on simple heat index\'96style idea: temp + humidity contribution.[web:6]\
+      let heat = (T - 20) * 2;         // hotter days rise faster\
+      heat += (RH - 40) * 0.6;         // humidity above 40% adds stress\
+      heat += (built - 40) * 0.4;      // dense built-up zones amplify heat[web:11]\
+      heat -= (green - 20) * 0.5;      // more green cover cools down[web:11]\
+\
+      // Clamp\
+      heat = Math.max(0, Math.min(100, heat));\
+\
+      let heatCategory, heatDesc;\
+      if (heat < 35) \{\
+        heatCategory = "Comfort";\
+        heatDesc = "Outdoor conditions are generally tolerable; focus on monitoring and long-term urban design tweaks.";\
+      \} else if (heat < 65) \{\
+        heatCategory = "Severe";\
+        heatDesc = "Heat is stressing residents and workers. Short-term operational changes and medium-term design measures are needed.";\
+      \} else \{\
+        heatCategory = "Extreme";\
+        heatDesc = "Heat is at critical levels. Prioritise immediate cooling access and resource stability for vulnerable groups.";\
+      \}\
+\
+      // --- RESOURCE STRAIN (0\'96100) ---\
+      let strain = 0;\
+      // Heat drives power & water demand.[web:13]\
+      strain += (T - 25) * 1.5;\
+      if (power === "high") strain += 20;\
+      if (power === "critical") strain += 35;\
+      if (water === "low") strain += 30;\
+      if (water === "medium") strain += 15;\
+\
+      // Compact, low-green areas strain both networks.[web:18]\
+      strain += (built - 50) * 0.4;\
+      strain -= (green - 25) * 0.3;\
+\
+      strain = Math.max(0, Math.min(100, strain));\
+\
+      let strainCategory, strainDesc;\
+      if (strain < 35) \{\
+        strainCategory = "Stable";\
+        strainDesc = "Power and water utilities have room to operate. Use this window for structural improvements.";\
+      \} else if (strain < 65) \{\
+        strainCategory = "Stressed";\
+        strainDesc = "Networks are under visible pressure. Demand management and targeted upgrades are advisable.";\
+      \} else \{\
+        strainCategory = "Overloaded";\
+        strainDesc = "Systems are close to failure. Emergency demand reduction and backup arrangements are critical.";\
+      \}\
+\
+      return \{\
+        heat,\
+        heatCategory,\
+        heatDesc,\
+        strain,\
+        strainCategory,\
+        strainDesc,\
+      \};\
+    \}\
+\
+    function buildRecommendations(scores, inputs, simulated = false) \{\
+      const recs = [];\
+      const \{ heatCategory \} = scores;\
+      const \{ T, RH, built, green, water, power \} = inputs;\
+\
+      const highBuilt = built > 60;\
+      const lowGreen = green < 20;\
+      const veryLowGreen = green < 10;\
+\
+      // Cool roof / reflective paint\
+      if (highBuilt) \{\
+        recs.push("Scale up cool roof and high-albedo paint programmes on public buildings and large rooftops in dense built-up blocks.");\
+      \}\
+\
+      // Tree density increase\
+      if (lowGreen) \{\
+        recs.push("Prioritise street trees, pocket parks, and shade structures along footpaths and transit corridors with low existing green cover.");\
+      \} else if (!veryLowGreen) \{\
+        recs.push("Protect and densify existing green corridors; connect parks and lakes with shaded pedestrian routes.");\
+      \}\
+\
+      // Work-hour adjustment\
+      if (heatCategory !== "Comfort") \{\
+        recs.push("Shift outdoor and manual work to early morning or late evening slots, especially for construction, traffic, and sanitation staff.");\
+      \}\
+\
+      // Public cooling zones\
+      if (heatCategory === "Severe" || heatCategory === "Extreme") \{\
+        recs.push("Activate public cooling zones: shaded bus stops, cooled community halls, and misting fans at high-footfall locations.");\
+      \}\
+\
+      // Household-level fixes\
+      if (RH > 45 || T > 35) \{\
+        recs.push("Promote low-cost household fixes: light-coloured roofs, cross-ventilation, shading devices, and shared cool rooms in dense housing.");\
+      \}\
+\
+      // Resource\uc0\u8209 specific\
+      if (power !== "normal") \{\
+        recs.push("Coordinate with the utility to stagger high-load uses (pumping, industry, large HVAC systems) away from peak demand hours.");\
+      \}\
+      if (water === "low" || water === "medium") \{\
+        recs.push("Announce temporary water-use norms for non-essential uses and accelerate leak detection and repair in high-loss zones.");\
+      \}\
+\
+      // Simulation hint\
+      if (!simulated) \{\
+        recs.push("Use scenario simulation (+10% green cover or cool roofs) to see how design changes reduce both heat stress and resource strain before implementation.");\
+      \}\
+\
+      return recs;\
+    \}\
+\
+    function updateUI(scores, recs, inputs, labelSuffix = "") \{\
+      const \{\
+        heat,\
+        heatCategory,\
+        heatDesc,\
+        strain,\
+        strainCategory,\
+        strainDesc,\
+      \} = scores;\
+\
+      const locationLabel = document.getElementById("location-label");\
+      const qualifierLabel = document.getElementById("qualifier-label");\
+\
+      locationLabel.textContent = inputs.location\
+        ? `$\{inputs.location\}$\{labelSuffix\}`\
+        : `Unnamed area$\{labelSuffix\}`;\
+\
+      qualifierLabel.textContent =\
+        heatCategory === "Comfort"\
+          ? "Monitor & plan"\
+          : heatCategory === "Severe"\
+          ? "Act this season"\
+          : "Act this week";\
+\
+      const heatScore = document.getElementById("heat-score");\
+      const heatCategoryLabel = document.getElementById("heat-category-label");\
+      const heatDescEl = document.getElementById("heat-desc");\
+      const heatBar = document.getElementById("heat-bar");\
+\
+      heatScore.textContent = `$\{Math.round(heat)\} / 100`;\
+      heatCategoryLabel.textContent = heatCategory;\
+      heatDescEl.textContent = heatDesc;\
+      heatBar.style.transform = `scaleX($\{Math.max(0.1, heat / 100)\})`;\
+\
+      const strainScore = document.getElementById("strain-score");\
+      const strainCategoryLabel = document.getElementById("strain-category-label");\
+      const strainDescEl = document.getElementById("strain-desc");\
+      const strainBar = document.getElementById("strain-bar");\
+\
+      strainScore.textContent = `$\{Math.round(strain)\} / 100`;\
+      strainCategoryLabel.textContent = strainCategory;\
+      strainDescEl.textContent = strainDesc;\
+      strainBar.style.transform = `scaleX($\{Math.max(0.1, strain / 100)\})`;\
+\
+      // Recommendations list\
+      const recList = document.getElementById("recommendations");\
+      recList.innerHTML = "";\
+      recs.forEach((r) => \{\
+        const li = document.createElement("li");\
+        li.textContent = r;\
+        recList.appendChild(li);\
+      \});\
+    \}\
+\
+    function getInputs(overrides = \{\}) \{\
+      const location = document.getElementById("location").value.trim();\
+      const T = parseFloat(document.getElementById("temperature").value || "0");\
+      const RH = parseFloat(document.getElementById("humidity").value || "0");\
+      const built = parseFloat(document.getElementById("builtup").value || "0");\
+      const green = parseFloat(document.getElementById("greencover").value || "0");\
+      const water = document.getElementById("water").value;\
+      const power = document.getElementById("power").value;\
+\
+      return \{\
+        location,\
+        T,\
+        RH,\
+        built,\
+        green,\
+        water,\
+        power,\
+        ...overrides,\
+      \};\
+    \}\
+\
+    form.addEventListener("submit", (e) => \{\
+      e.preventDefault();\
+      const inputs = getInputs();\
+      const scores = computeScores(inputs);\
+      const recs = buildRecommendations(scores, inputs, false);\
+      updateUI(scores, recs, inputs, "");\
+    \});\
+\
+    simulateBtn.addEventListener("click", () => \{\
+      const baseInputs = getInputs();\
+      if (!baseInputs.T || !baseInputs.RH) \{\
+        alert("Enter at least temperature, humidity, built-up, and green cover to run a simulation.");\
+        return;\
+      \}\
+      const simulatedInputs = \{ ...baseInputs, green: baseInputs.green + 10 \};\
+      const scores = computeScores(simulatedInputs);\
+      const recs = buildRecommendations(scores, simulatedInputs, true);\
+      updateUI(scores, recs, simulatedInputs, " (simulated: +10% green cover)");\
+    \});\
+  </script>\
+</body>\
+</html>\
+}
